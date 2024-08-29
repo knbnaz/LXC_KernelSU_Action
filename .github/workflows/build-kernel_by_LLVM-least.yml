@@ -76,6 +76,11 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE/kernel_workspace
         mkdir llvm-clang && mkdir binutils
+
+        if [ ${{ env.LLVM_VERSION }} = 18.1.8 ]; then
+             wget -O clang1818.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-18.1.8/clang+llvm-18.1.8-x86_64-linux-gnu-ubuntu-18.04.tar.xz
+             tar -C llvm-clang/ -xf clang1818.tar.xz
+        fi
         
         if [ ${{ env.LLVM_VERSION }} = 17.06 ]; then
              wget -O clang1706.tar.xz https://github.com/llvm/llvm-project/releases/download/llvmorg-17.0.6/clang+llvm-17.0.6-x86_64-linux-gnu-ubuntu-22.04.tar.xz
