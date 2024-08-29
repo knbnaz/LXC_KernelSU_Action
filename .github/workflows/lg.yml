@@ -42,6 +42,12 @@ jobs:
         with:
           path: kernel
 
+      
+      - name: Download kernel source
+        run: |
+         cd $GITHUB_WORKSPACE/kernel_workspace
+         git clone ${{ env.KERNEL_SOURCE }} -b ${{ env.KERNEL_SOURCE_BRANCH }} kernel 
+        
       - name: Build kernel
         run: |
           export PATH="$(pwd)/clang/bin:$(pwd)/clang/aarch64-linux-gnu/bin:$(pwd)/clang/arm-linux-gnueabi/bin:$PATH"
